@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>chechk the console for callback and promise examples</h1>
+    <button id="startButton">run examples</button>
+    <script>
+        function doTaskCallback(taskName,callback)
+        {
+            console.log("starting callback task:",taskName);
+            setTimeout(()=>{
+                console.log("completed callback task:",taskName);
+                callback();
+            }, 1000);
+        }
+        document.getElementById("startButton").addEventListener("click",()=>{
+            console.clear();
+            console.log("=== callback example===");
+            doTaskCallback("task 1",function(){
+                console.log("callback tasks done!\n);
+
+            } );
+            console.log("===promise example ===");
+            doTaskPromise("task a")
+            .then(()=>{
+                console.log("task a finished, now starting Task B");
+                return doTaskPromise("Task B");
+            })
+            .then(() => {
+                console.log("All promise tasks done!");
+            }
+        );
+        });
+    </script>
+</body>
+</html>
